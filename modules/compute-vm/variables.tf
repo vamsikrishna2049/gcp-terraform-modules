@@ -9,10 +9,11 @@ variable "project_id" {
 
 variable "zone" {
   type        = string
-  description = "GCP zone"
+  description = "Zone for the instance group"
+
   validation {
-    condition     = can(regex("^[a-z]+[0-9]+-[a-z0-9-]+-[0-9]+$", var.zone))
-    error_message = "zone must be a valid GCP zone"
+    condition     = can(regex("^[a-z]+(-[a-z]+)+[0-9]+-[a-z]$", var.zone))
+    error_message = "zone must be a valid GCP zone, for example: us-central1-a, asia-south1-a, europe-west1-b"
   }
 }
 
