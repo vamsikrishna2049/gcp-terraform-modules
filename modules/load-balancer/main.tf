@@ -51,7 +51,7 @@ resource "google_compute_backend_service" "backend_service" {
   dynamic "cdn_policy" {
     for_each = var.cdn_enabled ? [1] : []
     content {
-      cache_mode = "USE_ORIGIN_HEADERS"
+      cache_mode                   = "USE_ORIGIN_HEADERS"
       signed_url_cache_max_age_sec = 0
     }
   }
