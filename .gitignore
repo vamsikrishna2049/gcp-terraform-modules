@@ -1,7 +1,28 @@
-.terraform/
-**/.terraform/
-.terraform.lock.hcl
-**/.terraform.lock.hcl
+# Terraform
+**/.terraform/*
 *.tfstate
 *.tfstate.*
-*.log
+errored.tfstate
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+.terraform.lock.hcl
+
+# Python & local offline wheels
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+services/*/wheels/
+
+# GCP credentials & OS files
+*.json
+!**/package.json
+.DS_Store

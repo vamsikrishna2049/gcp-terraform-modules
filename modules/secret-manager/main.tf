@@ -5,7 +5,11 @@ resource "google_secret_manager_secret" "secret" {
   secret_id = each.key
 
   replication {
-    auto {}
+    user_managed {
+      replicas {
+        location = "us-central1"
+      }
+    }
   }
 
   labels = lookup(each.value, "labels", {})

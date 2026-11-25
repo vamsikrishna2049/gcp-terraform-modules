@@ -52,6 +52,7 @@ resource "google_compute_backend_service" "backend_service" {
     for_each = var.cdn_enabled ? [1] : []
     content {
       cache_mode = "USE_ORIGIN_HEADERS"
+      signed_url_cache_max_age_sec = 0
     }
   }
 }
@@ -70,6 +71,18 @@ resource "google_compute_security_policy" "cloud_armor" {
         src_ip_ranges = ["0.0.0.0/0"]
       }
     }
+  }
+
+  rule {
+    action   = "allow"
+    priority = 2147483647
+    match {
+      versioned_expr = "SRC_IPS_V1"
+      config {
+        src_ip_ranges = ["*"]
+      }
+    }
+    description = "Default allow rule"
   }
 }
 
