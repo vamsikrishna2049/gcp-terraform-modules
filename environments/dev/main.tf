@@ -1,7 +1,7 @@
 module "vm_cloudsql_stack" {
   source = "../../modules/vm-cloudsql-stack"
 
-  project_id            = "playground-s-11-5c775352"
+  project_id            = "playground-s-11-6c20b94e"
   region                = "us-central1"
   zone                  = "us-central1-a"
   environment           = "dev"
@@ -19,7 +19,7 @@ module "vm_cloudsql_stack" {
 
 module "secret_manager" {
   source      = "../../modules/secret-manager"
-  project_id  = "playground-s-11-5c775352"
+  project_id  = "playground-s-11-6c20b94e"
   environment = "dev"
 
   secret_configs = {
@@ -35,20 +35,20 @@ module "secret_manager" {
 module "cloud_run" {
   max_instance_count    = 1
   source                = "../../modules/cloud-run"
-  project_id            = "playground-s-11-5c775352"
+  project_id            = "playground-s-11-6c20b94e"
   region                = "us-central1"
   environment           = "dev"
-  image_url             = "us-central1-docker.pkg.dev/playground-s-11-5c775352/dev-repo/cloudsql-secret-rotator:latest"
+  image_url             = "us-central1-docker.pkg.dev/playground-s-11-6c20b94e/dev-repo/cloudsql-secret-rotator:latest"
   secret_id             = "dev-db-password"
-  service_account_email = "terraform-dev@playground-s-11-5c775352.iam.gserviceaccount.com"
+  service_account_email = "terraform-dev@playground-s-11-6c20b94e.iam.gserviceaccount.com"
 }
 
 # module "secret_rotation" {
 #   source                  = "../../modules/secret-rotation"
-#   project_id              = "playground-s-11-5c775352"
+#   project_id              = "playground-s-11-6c20b94e"
 #   region                  = "us-central1"
 #   environment             = "dev"
-#   rotation_service_image  = "us-central1-docker.pkg.dev/playground-s-11-5c775352/dev-repo/cloudsql-secret-rotator:latest"
+#   rotation_service_image  = "us-central1-docker.pkg.dev/playground-s-11-6c20b94e/dev-repo/cloudsql-secret-rotator:latest"
 #   cloud_sql_instance_name = "dev-postgres-db"
 #   secret_id               = "dev-db-password"
 # }

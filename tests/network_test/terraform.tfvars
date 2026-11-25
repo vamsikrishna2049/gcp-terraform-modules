@@ -1,4 +1,4 @@
-project_id   = "company-dev-2024"
+project_id   = "playground-s-11-25ea42ed"
 region       = "us-central1"
 environment  = "dev"
 cidr_block   = "10.0.0.0/16"

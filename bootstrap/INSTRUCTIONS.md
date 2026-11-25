@@ -5,7 +5,7 @@ Use this script to create a Terraform backend bucket and bootstrap service accou
 ## Usage
 
 ```bash
-./bootstrap.sh <PROJECT_ID> <ENVIRONMENT>
+./bootstrap.sh playground-s-11-25ea42ed dev
 ```
 
 Example:

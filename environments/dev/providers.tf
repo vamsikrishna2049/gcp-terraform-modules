@@ -6,13 +6,13 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket = "playground-s-11-5c775352-terraform-state-dev"
+    bucket = "playground-s-11-6c20b94e-terraform-state-dev"
     prefix = "dev/state"
   }
 }
 
 provider "google" {
-  project = "playground-s-11-5c775352"
+  project = "playground-s-11-6c20b94e"
   region  = "us-central1"
   zone    = "us-central1-a"
 }

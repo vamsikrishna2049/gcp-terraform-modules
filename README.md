@@ -1,3 +1,6 @@
+Access the path from here:
+ `/workspaces/gcp-terraform-modules/environments/dev/README.md`
+
 # GCP Terraform Modules
 
 Reusable Terraform modules for GCP infrastructure including networking, VMs, Cloud SQL, secret management, secret rotation, Cloud Run, and load balancing.
