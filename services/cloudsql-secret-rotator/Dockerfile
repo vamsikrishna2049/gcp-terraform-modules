@@ -2,8 +2,7 @@ FROM python:3.11-slim AS builder
 
 WORKDIR /build
 COPY requirements.txt .
-COPY wheels ./wheels
-RUN pip install --user --no-cache-dir --no-index --find-links=./wheels -r requirements.txt
+RUN pip install --user --no-cache-dir -r requirements.txt
 
 FROM python:3.11-slim
 
