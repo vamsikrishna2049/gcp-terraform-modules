@@ -1,6 +1,5 @@
 plugin "terraform" {
   enabled = true
-  version = "0.5.0"
 }
 
 rule "terraform_required_version" {
