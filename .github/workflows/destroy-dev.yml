@@ -1,0 +1,51 @@
+name: Destroy GCP Dev Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "destroy-dev" to confirm infrastructure deletion'
+        required: true
+        type: string
+
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  TF_WORKING_DIR: environments/dev
+
+jobs:
+  destroy-infra:
+    name: Destroy Terraform Infrastructure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verify Confirmation
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" != "destroy-dev" ]; then
+            echo "Confirmation failed. You must type 'destroy-dev' to proceed."
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init -reconfigure
+
+      - name: Terraform Plan (Destroy)
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform plan -destroy -no-color
+
+      - name: Terraform Destroy
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform destroy -auto-approve -no-color
